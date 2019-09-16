@@ -14,15 +14,42 @@ const rippleRegex      = require('ripple-regex');
 const neoRegex         = require('neo-regex');
 
 function detectCrypto(address) {
-	if (bitcoinRegex({exact: true}).test(address)) return 'BTC/BCH';
-	else if (ethereumRegex({exact: true}).test(address)) return 'ETH';
-	else if (litecoinRegex({exact: true}).test(address)) return 'LTC';
-	else if (dogecoinRegex({exact: true}).test(address)) return 'DOGE';
-	else if (dashRegex({exact: true}).test(address)) return 'DASH';
-	else if (moneroRegex({exact: true}).test(address)) return 'XMR';
-	else if (rippleRegex({exact: true}).test(address)) return 'XRP';
-	else if (bitcoincashRegex.format('cashaddr', {exact: true}).test(address)) return 'BCH';
-	else if (neoRegex({exact: true}).test(address)) return 'NEO';
+	if (bitcoinRegex({exact: true}).test(address)) return {
+		name: 'bitcoin',
+		symbol: 'BTC'
+	};
+	else if (ethereumRegex({exact: true}).test(address)) return {
+		name: 'ethereum',
+		symbol: 'ETH'
+	};
+	else if (litecoinRegex({exact: true}).test(address)) return {
+		name: 'litecoin',
+		symbol: 'LTC'
+	};
+	else if (dogecoinRegex({exact: true}).test(address)) return {
+		name: 'dogecoin',
+		symbol: 'DOGE'
+	};
+	else if (dashRegex({exact: true}).test(address)) return {
+		name: 'dash',
+		symbol: 'DASH'
+	};
+	else if (moneroRegex({exact: true}).test(address)) return {
+		name: 'monero',
+		symbol: 'XMR'
+	};
+	else if (rippleRegex({exact: true}).test(address)) return {
+		name: 'ripple',
+		symbol: 'XRP'
+	};
+	else if (bitcoincashRegex.format('cashaddr', {exact: true}).test(address)) return {
+		name: 'bitcoin-cash',
+		symbol: 'BCH'
+	};
+	else if (neoRegex({exact: true}).test(address)) return {
+		name: 'neo',
+		symbol: 'NEO'
+	};
 	else return 'Cryptocurrency could not be detected'
 }
 
